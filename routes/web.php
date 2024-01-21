@@ -1,18 +1,12 @@
 <?php
 
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/',[SongController::class,'index'])->name("home");
+//Route::get('/add',"newSong")->name("addForm");
+Route::get('/add',[SongController::class,'addSong'])->name("addSong");
+Route::get('/saveChanges',[SongController::class,'saveSongChanges'])->name("saveSongChanges");
+Route::get('/edit/{id}',[SongController::class,'editSong'])->name("editSong");
+Route::get('/remove/{id}',[SongController::class,'removeSong'])->name("removeSong");
 
-Route::get('/', function () {
-    return view('welcome');
-});
