@@ -10,3 +10,7 @@ Route::get('/saveChanges',[SongController::class,'saveSongChanges'])->name("save
 Route::get('/edit/{id}',[SongController::class,'editSong'])->name("editSong");
 Route::get('/remove/{id}',[SongController::class,'removeSong'])->name("removeSong");
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
