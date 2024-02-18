@@ -14,24 +14,4 @@ class SongController extends Controller
 
         return view('home', ['songs' => $songs]);
     }
-
-    public function addSong(Request $request)
-    {
-
-    }
-
-    public function saveSongChanges(Request $request)
-    {
-
-    }
-
-    public function editSong(Request $request)
-    {
-
-    }
-
-    public function removeSong(Request $request)
-    {
-
-    }
 }
