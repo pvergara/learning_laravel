@@ -7,24 +7,49 @@
                 <div class="card">
 
 
-                    <form action="{{ route('createNewSong')}}" method="post">
+                    <form
+                        @if(isset($song))
+                            action="{{ route('saveSongChanges')}}"
+                        @else
+                            action="{{ route('createNewSong')}}"
+                        @endif
+                        method="post">
                         @csrf <!-- {{ csrf_field() }} -->
                         <div class="form-group">
                             <label for="name">{{__('Name')}}</label>
-                            <input type="text" class="form-control" id="name" name="name"/>
+                            <input type="text" class="form-control" id="name" name="name"
+                                   @if(isset($song))
+                                       value="{{$song->name}}"
+                                @endif
+                            />
                         </div>
                         <div class="form-group">
                             <label for="artist">{{__('Artist')}}</label>
-                            <input type="text" class="form-control" id="artist" name="artist" />
+                            <input type="text" class="form-control" id="artist" name="artist"
+                               @if(isset($song))
+                                   value="{{$song->artist}}"
+                                @endif
+                            />
                         </div>
                         <div class="form-group">
                             <label for="album">{{__('Album')}}</label>
-                            <input type="text" class="form-control" id="album" name="album" />
+                            <input type="text" class="form-control" id="album" name="album"
+                               @if(isset($song))
+                                   value="{{$song->album}}"
+                               @endif
+                            />
                         </div>
                         <div class="form-group">
                             <label for="year">{{__('Year')}}</label>
-                            <input type="text" class="form-control" id="year" name="year" />
+                            <input type="text" class="form-control" id="year" name="year"
+                               @if(isset($song))
+                                   value="{{$song->year}}"
+                                @endif
+                            />
                         </div>
+                        @if(isset($song))
+                            <input type="hidden" id="id" name="id" value="{{$song->id}}">
+                        @endif
                         <button type="submit" class="btn btn-primary">{{__('Submit')}}</button>
                     </form>
                 </div>

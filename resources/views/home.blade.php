@@ -15,6 +15,9 @@
                             </div>
                         @endif
 
+                            @if(session("message"))
+                                <h3 style="color: blue;">{{ session("message") }}</h3>
+                            @endif
 
                         <h1>{{__('All songs')}}</h1>
 

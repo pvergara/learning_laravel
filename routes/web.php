@@ -10,8 +10,8 @@ Route::get('/',[SongController::class,'index'])->name("home");
 Route::post('/createNewSong',[AuthSongController::class,'createNewSong'])->name("createNewSong");
 Route::get('/add',[AuthSongController::class,'addSong'])->name("addSong");
 
-Route::get('/saveChanges',[AuthSongController::class,'saveSongChanges'])->name("saveSongChanges");
 Route::get('/edit/{id}',[AuthSongController::class,'editSong'])->name("editSong");
+Route::post('/saveSongChanges',[AuthSongController::class,'saveSongChanges'])->name("saveSongChanges");
 Route::get('/remove/{id}',[AuthSongController::class,'removeSong'])->name("removeSong");
 
 

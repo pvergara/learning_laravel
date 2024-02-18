@@ -31,21 +31,36 @@ class AuthSongController extends Controller
         $song->year = $request->year;
 
         $song->save();
+        session()->flash('message',__('Cancion creada'));
         return redirect()->route('home');
+    }
+
+    public function editSong(Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $song = Song::find($request->route("id"));
+
+        return view('editSong', ['song' => $song]);
     }
 
     public function saveSongChanges(Request $request)
     {
+        $song = Song::findOrFail($request->id);
+        $song->name = $request->name;
+        $song->artist = $request->artist;
+        $song->album = $request->album;
+        $song->year = $request->year;
 
-    }
-
-    public function editSong(Request $request)
-    {
-
+        $song->save();
+        session()->flash('message',__('Cancion editada'));
+        return redirect()->route('home');
     }
 
     public function removeSong(Request $request)
     {
+        $song = Song::find($request->route("id"));
 
+        $song->delete();
+        session()->flash('message',__('Cancion eliminada'));
+        return redirect()->route('home');
     }
 }
