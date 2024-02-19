@@ -24,12 +24,17 @@
                             />
                         </div>
                         <div class="form-group">
-                            <label for="artist">{{__('Artist')}}</label>
-                            <input type="text" class="form-control" id="artist" name="artist"
-                               @if(isset($song))
-                                   value="{{$song->artist}}"
-                                @endif
-                            />
+                            <label for="artist_id">{{__('Artist')}}</label><br/>
+                            <select class="form-select" name="artist_id" id="artist_id">
+                                @foreach ($artist as $item)
+                                    <option value="{{ $item->id }}"
+                                            @if (isset($song) && ($item->id == $song->artist_id))
+                                                selected="selected"
+                                        @endif
+                                    >{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="form-group">
                             <label for="album">{{__('Album')}}</label>
@@ -41,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label for="year">{{__('Year')}}</label>
-                            <input type="text" class="form-control" id="year" name="year"
+                            <input type="number" min="0" max="2200" class="form-control" id="year" name="year"
                                @if(isset($song))
                                    value="{{$song->year}}"
                                 @endif

@@ -38,7 +38,7 @@
                             @foreach ($songs as $song)
                                 <tr>
                                     <td>{{ $song->name }}</td>
-                                    <td>{{ $song->artist }}</td>
+                                    <td>{{ $song->artist->name }}</td>
                                     <td>{{ $song->album }}</td>
                                     <td>{{ $song->year }}</td>
                                     @if (!Auth::guest())

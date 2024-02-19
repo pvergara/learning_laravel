@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
 use App\Models\Song;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,14 +20,15 @@ class AuthSongController extends Controller
     }
     public function addSong(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('editSong');
+        $artist = Artist::all();
+        return view('editSong',['artist' => $artist]);
     }
 
     public function createNewSong(Request $request): RedirectResponse
     {
         $song = new Song();
         $song->name = $request->name;
-        $song->artist = $request->artist;
+        $song->artist_id = $request->artist_id;
         $song->album = $request->album;
         $song->year = $request->year;
 
@@ -38,15 +40,16 @@ class AuthSongController extends Controller
     public function editSong(Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $song = Song::find($request->route("id"));
+        $artist = Artist::all();
 
-        return view('editSong', ['song' => $song]);
+        return view('editSong', ['song' => $song,'artist' => $artist]);
     }
 
     public function saveSongChanges(Request $request)
     {
         $song = Song::findOrFail($request->id);
         $song->name = $request->name;
-        $song->artist = $request->artist;
+        $song->artist_id = $request->artist_id;
         $song->album = $request->album;
         $song->year = $request->year;
 

@@ -17,7 +17,7 @@ class AddSongs extends Seeder
         DB::table(self::SONGS)->insert(
             [
                 'name' => 'taurus',
-                'artist' => 'Mike Oldfield',
+                'artist_id' => '1',
                 'album' => 'crises',
                 'year' => '1989'
             ]);
